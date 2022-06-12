@@ -1,8 +1,5 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
+# This is frontend part assignment given by Vouch-digital
+# the hosted url is https://vouch-digital-assignment.netlify.app/
 
 In the project directory, you can run:
 
