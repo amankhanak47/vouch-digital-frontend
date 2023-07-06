@@ -1,13 +1,17 @@
-
-import './App.css';
-import Login from './components/Login';
-import Navbar from './components/Navbar';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
+import ForgotPassword from "./pages/ForgotPassword";
 
 function App() {
   return (
     <div className="App">
-      <Navbar/>
-      <Login />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/forgotpassword" element={<ForgotPassword/>}/>
+        </Routes>
+      </BrowserRouter>
+      
     </div>
   );
 }

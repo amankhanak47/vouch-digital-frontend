@@ -1,42 +1,33 @@
 import React, { useState } from "react";
 import "./login.css";
-import av from "./image1.png"
+import av from "./image1.png";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
- 
 
   const handlesubmit = async (e) => {
-    
-    e.preventDefault()
-    const response = await fetch(`https://vouch-backend-app.herokuapp.com/login`, {
-      method: "POST",
-  
-      headers: {
-        "Content-Type": "application/json",
-       },
-       body: JSON.stringify({email:email,password:password}),
-      
-    });
-    const json=await response.json();
- 
-    
+    e.preventDefault();
+    const response = await fetch(
+      `https://x8ki-letl-twmt.n7.xano.io/api:XooRuQbs/auth/login`,
+      {
+        method: "POST",
 
-    if(json.sucess){
-      
-       alert(`TOKEN : ${json.authtoken}`)
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: email, password: password }),
+      }
+    );
+    const json = await response.json();
 
+    if (!json.authToken) {
+      alert(json.message);
     }
-    else{
- 
-      alert(`ERROR : ${json.errors[0].msg}`)
-    }
-  }
+  };
   return (
-      <div className="login">
-          
-     
+    <div className="login">
       <form className="loginbox" onSubmit={handlesubmit}>
         <h1 className="login-title">Welcome Back</h1>
         <p>sub-title text goes here</p>
@@ -66,15 +57,18 @@ export default function Login() {
         </div>
         <button className="login-btn" type="submit">
           Login
-              </button>
-              <div className="login-footer-desc">
-                  <div className="rem-password">
-                      <input type="checkbox" name="" id="" /><p>Remember Password</p>
-                  </div>
-                  <p>Forgot Password ?</p>
-              </div>
-          </form>
-           <div className="right-login">
+        </button>
+        <div className="login-footer-desc">
+          <div className="rem-password">
+            <input type="checkbox" name="" id="" />
+            <p>Remember Password</p>
+          </div>
+          <Link to={"forgotpassword"}>
+            <p>Forgot Password ?</p>
+          </Link>
+        </div>
+      </form>
+      <div className="right-login">
         <img src={av} alt="" />
       </div>
     </div>
